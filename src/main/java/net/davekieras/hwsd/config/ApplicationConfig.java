@@ -57,10 +57,10 @@ public final class ApplicationConfig {
 		return LazyHolder.INSTANCE;
 	}
 
-	public synchronized void load() {
+	public void load() {
 		//double-checked locking ensures that multiple threads cannot load the config, and it can be loaded only once
 		if (!loaded) {
-			synchronized (loaded) {
+			synchronized (this) {
 				if (!loaded) {
 					LOG.info("Loading configuration...");
 					registerDaos();

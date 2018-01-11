@@ -29,11 +29,11 @@ public class ApplicationBootstrap {
 		initialize(null);
 	}
 
-	public synchronized void initialize(String applicationPropertiesFileName) {
+	public void initialize(String applicationPropertiesFileName) {
 		// double-checked locking ensures that multiple threads cannot load the
 		// config, and it can be loaded only once
 		if (!loaded) {
-			synchronized (loaded) {
+			synchronized (this) {
 				if (!loaded) {
 					try {
 						// This loads the application properties

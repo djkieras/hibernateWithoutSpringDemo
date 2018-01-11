@@ -64,11 +64,11 @@ public final class ApplicationProperties {
 		load(is);
 	}
 
-	public synchronized void load(InputStream is) {
+	public void load(InputStream is) {
 		// double-checked locking ensures that multiple threads cannot load the
 		// properties, and it can be loaded only once
 		if (!loaded) {
-			synchronized (loaded) {
+			synchronized (this) {
 				if (!loaded) {
 					Properties properties = new Properties();
 					try {
